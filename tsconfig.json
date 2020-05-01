@@ -1,12 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "allowJs": true,
-    "skipLibCheck": true,
+    "sourceMap": true,
     "strict": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "isolatedModules": true,
+    "lib": ["esnext", "dom"],
+    "esModuleInterop": true,
     "outDir": "dist"
   },
   "exclude": [
