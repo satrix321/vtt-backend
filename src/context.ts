@@ -1,13 +1,33 @@
 import { PrismaClient } from '@prisma/client'
+import jwt from 'jsonwebtoken'
 
 const prisma = new PrismaClient()
 
 export interface Context {
+  user: any,
   prisma: PrismaClient,
 }
 
-export function createContext(): Context {
-  return { prisma }
+const getUser = (token: string) => {
+  try {
+    if (token) {
+      return jwt.verify(token, 'my-secret-from-env-file-in-prod')
+    }
+    return null
+  } catch (err) {
+    return null
+  }
+}
+
+export function createContext({ req }: any): Context {
+  const tokenWithBearer = req.headers.authorization || ''
+  const token = tokenWithBearer.split(' ')[1]
+  const user = getUser(token)
+
+  return {
+    user,
+    prisma,
+  }
 }
 
 export function destroyContext(): Promise<any> {
