@@ -7,6 +7,14 @@ module.exports = {
         exclude: [path.resolve(__dirname, 'node_modules')],
         test: /\.ts$/,
         use: 'ts-loader'
+      },
+      {
+        test: /\.(txt)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       }
     ]
   },
@@ -17,5 +25,8 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js']
   },
-  target: 'node'
+  target: 'node',
+  node: {
+    __dirname: false
+  }
 };

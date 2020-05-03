@@ -5,6 +5,7 @@ export default gql`
 type Query {
   user(id: ID!): User
   currentUser: User!
+  roll(equation: String!, verbose: Boolean): Roll!
 }
 
 type User {
@@ -21,5 +22,10 @@ type Mutation {
 type LoginResponse {
   token: String
   user: User
+}
+
+type Roll {
+  result: String!
+  rolledEquation: String
 }
 `

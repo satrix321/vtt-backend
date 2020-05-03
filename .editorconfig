@@ -1,5 +1,5 @@
 root = true
 
-[{*.tsx,*.scss}]
+[{*.ts,*.js,*.d.ts}]
 indent_style = space
 indent_size = 2

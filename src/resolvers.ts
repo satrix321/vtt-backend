@@ -1,6 +1,7 @@
 import { Context } from './context'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import rollParser from './rollParser/rollParser'
 
 export default {
   Query: {
@@ -15,7 +16,12 @@ export default {
       return ctx.prisma.user.findOne({ where: {
         id: ctx.user.id,
       }})
-    }
+    },
+    roll: (_: any, { equation, verbose }: { equation: string, verbose: boolean }, ctx: Context) => {
+      return rollParser.parse(equation, {
+        verbose,
+      })
+    },
   },
   Mutation: {
     register: async (_: any, { email, password }: any, ctx: Context) => {
@@ -56,6 +62,6 @@ export default {
         token,
         user,
       }
-    }
+    },
   }
 }
