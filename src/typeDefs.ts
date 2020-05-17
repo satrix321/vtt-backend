@@ -25,7 +25,14 @@ type LoginResponse {
 }
 
 type Roll {
+  equation: String!
   result: String!
-  rolledEquation: String
+  tokens: [Token!]
+}
+
+type Token {
+  token: String!
+  isRoll: Boolean!
+  rollResults: [String!]
 }
 `
