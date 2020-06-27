@@ -24,12 +24,18 @@ export default {
     },
   },
   Mutation: {
-    register: async (_: any, { email, password }: any, ctx: Context) => {
+    register: async (_: any, { email, password, username }: any, ctx: Context) => {
+      if (await ctx.prisma.user.findOne({ where: { email } })) {
+        throw new Error('Email already in use')
+      }
+
       const hashedPassword = await bcrypt.hash(password, 10)
       const user = await ctx.prisma.user.create({ data: {
-        email: email,
+        email,
         password: hashedPassword,
+        username,
       }})
+
       return user
     },
     login: async (_: any, { email, password }: any, ctx: Context) => {

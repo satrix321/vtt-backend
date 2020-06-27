@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "webpack --config webpack.development.js",
-    "start": "node dist/server"
+    "start": "node dist/server",
+    "dev": "webpack --config webpack.development.js & node dist/server"
   },
   "dependencies": {
     "@prisma/client": "^2.0.0-beta.4",
