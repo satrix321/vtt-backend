@@ -1,6 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 import jwt from 'jsonwebtoken'
 
+const jwtSecret = 'my-secret-from-env-file-in-prod'
+
 const prisma = new PrismaClient()
 
 export interface Context {
@@ -11,7 +13,7 @@ export interface Context {
 const getUser = (token: string) => {
   try {
     if (token) {
-      return jwt.verify(token, 'my-secret-from-env-file-in-prod')
+      return jwt.verify(token, jwtSecret)
     }
     return null
   } catch (err) {
