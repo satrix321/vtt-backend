@@ -22,7 +22,9 @@ export const register = async (_: any, { email, password, username }: any, ctx: 
 }
 
 export const login = async (_: any, { email, password }: any, ctx: Context) => {
-  const user = await ctx.prisma.user.findOne({ where: { email } })
+  const user = await ctx.prisma.user.findOne({
+    where: { email }
+  })
 
   if (!user) {
     throw new Error('Invalid Login')
@@ -49,4 +51,16 @@ export const login = async (_: any, { email, password }: any, ctx: Context) => {
     token,
     user,
   }
+}
+
+export const autoLogin = async (_: any, { token }: any, ctx: Context) => {
+  const decodedToken = jwt.decode(token) as any
+
+  if (decodedToken) {
+    return await ctx.prisma.user.findOne({
+      where: { id: decodedToken.id }
+    })
+  }
+
+  return null
 }

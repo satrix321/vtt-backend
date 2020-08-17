@@ -13,11 +13,6 @@ async function main() {
   server.listen().then(({ url }: { url: string }) => {
     console.log(`🚀 Server ready at ${url}`)
   })
-
-  if (module.hot) {
-    module.hot.accept()
-    module.hot.dispose(() => server.stop())
-  }
 }
 
 main()

@@ -5,8 +5,22 @@ export default gql`
 type Query {
   user(id: ID!): User
   currentUser: User!
+
   game(id: ID!): Game
+  listOfGames(userId: ID!): [Game!]
+
   roll(equation: String!, verbose: Boolean): Roll!
+}
+
+type Mutation {
+  register(email: String!, password: String!, username: String): User!
+  login(email: String!, password: String!): LoginResponse!
+  autoLogin(token: String!): User
+
+  createGame(ownerId: ID!, name: String!, description: String): Game!
+  deleteGame(id: ID!): Game!
+  addPlayerToGame(gameId: ID!, userId: ID!): Game!
+  removePlayerFromGame(gameId: ID!, userId: ID!): Game!
 }
 
 type User {
@@ -14,6 +28,7 @@ type User {
   email: String!
   username: String
   ownedGames: [Game!]
+  games: [Game!]
 }
 
 type Game {
@@ -24,12 +39,7 @@ type Game {
   description: String
   lastGameDate: String
   nextGameDate: String
-}
-
-type Mutation {
-  register(email: String!, password: String!, username: String): User!
-  login(email: String!, password: String!): LoginResponse!
-  createGame(ownerId: ID!, name: String!, description: String): Game!
+  players: [User!]
 }
 
 type LoginResponse {

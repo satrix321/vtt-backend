@@ -1,0 +1,9 @@
+{
+  "ignore": [
+    "src",
+    "node_modules",
+    "dist/*.json",
+    "dist/*.txt",
+    "dist/*hot-update.js"
+  ]
+}
