@@ -13,7 +13,7 @@ type Query {
 }
 
 type Mutation {
-  register(email: String!, password: String!, username: String): User!
+  register(email: String!, password: String!, username: String!): User!
   login(email: String!, password: String!): LoginResponse!
   autoLogin(token: String!): User
 

@@ -9,6 +9,10 @@ export const register = async (_: any, { email, password, username }: any, ctx: 
     throw new Error('Email already in use')
   }
 
+  if (await ctx.prisma.user.findOne({ where: { username } })) {
+    throw new Error('Username already in use')
+  }
+
   const hashedPassword = await bcrypt.hash(password, 10)
   const user = await ctx.prisma.user.create({
     data: {

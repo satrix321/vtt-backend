@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -14,7 +14,7 @@ model User {
   id         Int     @id @default(autoincrement())
   email      String  @unique
   password   String
-  username   String  @unique
+  username   String
   ownedGames Game[]  @relation(name: "OwnedGames")
   games      Game[]  @relation(name: "Players", references: [id])
 }
