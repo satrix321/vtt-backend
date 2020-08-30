@@ -21,6 +21,8 @@ type Mutation {
   deleteGame(id: ID!): Game!
   addPlayerToGame(gameId: ID!, userId: ID!): Game!
   removePlayerFromGame(gameId: ID!, userId: ID!): Game!
+
+  uploadFile(file: Upload!): String!
 }
 
 type User {

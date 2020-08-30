@@ -27,6 +27,12 @@ export default {
     createGame,
     deleteGame,
     addPlayerToGame,
-    removePlayerFromGame
+    removePlayerFromGame,
+
+    uploadFile: (_: any, { file }: any, ctx: Context) => {
+      file.then((f: any) => {
+        console.log(f)
+      })
+    }
   }
 }
