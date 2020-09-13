@@ -22,7 +22,12 @@ type Mutation {
   addPlayerToGame(gameId: ID!, userId: ID!): Game!
   removePlayerFromGame(gameId: ID!, userId: ID!): Game!
 
-  uploadFile(file: Upload!): String!
+  uploadFile(file: Upload!): Result!
+}
+
+type Result {
+  result: Boolean!
+  error: String
 }
 
 type User {
