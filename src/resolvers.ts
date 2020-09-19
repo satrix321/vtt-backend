@@ -5,7 +5,7 @@ import { game, listOfGames } from './queries/game'
 import { register, login, autoLogin } from './mutations/auth'
 import { createGame, deleteGame, addPlayerToGame, removePlayerFromGame } from './mutations/game'
 
-import S3 from 'aws-sdk/clients/s3';
+import S3 from 'aws-sdk/clients/s3'
 
 export default {
   Query: {
